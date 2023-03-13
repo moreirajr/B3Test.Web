@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="navbar">
+      <button class="menu-bars" (click)="toggleSidebar()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    <nav class="nav-menu" [ngClass]="{ 'active': sidebarOpen }">
+      <ul class="nav-menu-items" (click)="toggleSidebar()">
+        <li class="navbar-toggle">
+          <button class="menu-bars" (click)="toggleSidebar()">
+            <i class="fa fa-times"></i>
+          </button>
+        </li>
+        <li *ngFor="let item of sidebar" class="nav-text">
+          <a routerLink="{{ item.path }}">
+            <span class="sidebar-icon">{{ item.icon }}</span>
+            <span class="sidebar-title">{{ item.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
+  

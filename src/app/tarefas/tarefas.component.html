@@ -1,0 +1,48 @@
+<div class="container">
+  <h2 class="page-title">Nova Tarefa</h2>
+
+  <form [formGroup]="formTarefa" (ngSubmit)="onSubmit()" class="form-tarefa">
+    <div class="form-group">
+      <label for="descricao">Descrição:</label>
+      <input type="text" name="descricao" formControlName="descricao" required>
+    </div>
+
+    <div class="form-group">
+      <label for="data">Data:</label>
+      <input type="date" name="data" formControlName="data" required>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status:</label>
+      <select name="status" formControlName="status" required>
+        <option value="0">Selecione...</option>
+        <option value="1">Pendente</option>
+        <option value="2">Em Andamento</option>
+        <option value="3">Concluída</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="formTarefa.invalid" class="btn btn-primary">Adicionar</button>
+  </form>
+
+  <h2 class="page-title">Tarefas</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descrição</th>
+        <th>Data</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tarefa of tarefas$ | async">
+        <td>{{ tarefa.id }}</td>
+        <td>{{ tarefa.descricao }}</td>
+        <td>{{ tarefa.data | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ tarefa.descricaoStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
